@@ -5,6 +5,17 @@ const MSG = {
 	STOP   : "■"
 };
 
+const SCENARIO_DATA = [
+	{ title:"カリスマJK探偵城ヶ崎美嘉の事件簿:1話", file: "scenario000.txt" },
+	{ title:"カリスマJK探偵城ヶ崎美嘉の事件簿:2話", file: "scenario001.txt" },
+	{ title:"カリスマJK探偵城ヶ崎美嘉の事件簿:3話", file: "scenario002.txt" },
+	{ title:"カリスマJK探偵城ヶ崎美嘉の事件簿:4話", file: "scenario003.txt" },
+	{ title:"カリスマJK探偵城ヶ崎美嘉の事件簿:5話", file: "scenario004.txt" },
+	{ title:"カリスマJK探偵城ヶ崎美嘉の事件簿:6話", file: "scenario005.txt" },
+	{ title:"カリスマJK探偵城ヶ崎美嘉の事件簿:7話", file: "scenario006.txt" },
+	{ title:"カリスマJK探偵城ヶ崎美嘉の事件簿:8話", file: "scenario007.txt" },
+];
+
 window.onload = () => {
 	run();
 };
@@ -45,9 +56,30 @@ let interval = (INTERVAL.MAX + INTERVAL.MIN) / 2;
 function run(): void {
 	txtBox = <HTMLElement>document.getElementById("txt-box");
 	page = <HTMLElement>document.getElementById("txt-current-page");
+	initChapterSelecter();
 	setText(MSG.LOADING);
 	initRange();
-	loadFile();
+	loadFile(SCENARIO_DATA[0].file);
+};
+
+function initChapterSelecter() {
+	let parent = <HTMLElement>document.getElementById("prt-chapter-selet");
+
+	let selecter = ""
+	SCENARIO_DATA.forEach((element, i)=> {
+		selecter += '<option value="' + i + '">' + element.title + '</option>';
+		
+	});
+
+	const dom = document.createElement("select");
+	dom.innerHTML = selecter;
+
+	parent.appendChild(dom);
+
+	dom.addEventListener("change", (e:Event) => {
+		const _value = +(<HTMLSelectElement>e.currentTarget).value;
+		loadFile(SCENARIO_DATA[_value].file)
+	});
 };
 
 /**
@@ -76,15 +108,20 @@ function rangeOnChange(e:Event) {
 /**
  * ファイル読み込み
  */
-function loadFile() {
+function loadFile(fileName:string) {
 	const req = new XMLHttpRequest();
 
 	// ファイル取得
-	req.open("get", "./txt/data.txt", true);
+	req.open("get", "./txt/" + fileName, true);
 	req.send(null);
 	
 	req.onload = () => {
-		onLoad(req.responseText);
+
+		if(req.status == 200) {
+			onLoad(req.responseText);
+		} else {
+			onError();
+		}
 	};
 	req.onerror = () => {
 		onError();
@@ -96,6 +133,11 @@ function loadFile() {
  */
 function onLoad(txt:string) {
 	scenario = txt.split("\n");
+	step = 0;
+	stopTimer();
+	timer = 0;
+	preUpdateTime = 0;
+	
 	showCurrentScenario();
 };
 
@@ -131,7 +173,8 @@ function showCurrentScenario() {
 	setText(scenario[step]);
 
 	if(page) {
-		page.innerText = step + "";
+		// 表示はページなので1足す
+		page.innerText = (step + 1) + "/" + scenario.length;
 	}
 };
 
@@ -196,7 +239,8 @@ function onStop() {
 
 function onScenarioJump() {
 	const num = Number((<HTMLInputElement>document.getElementById("scenario-set")).value);
-	setStep(num);
+	// 表示はページなので1減じる
+	setStep(num - 1);
 	showCurrentScenario();
 };
 

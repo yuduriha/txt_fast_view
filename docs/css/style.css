@@ -8,24 +8,31 @@ html {
 }
 
 body {
-	background: linear-gradient(45deg, #aaa 25%, transparent 25%, transparent 75%, #aaa 75%),
-				linear-gradient(45deg, #aaa 25%, transparent 25%, transparent 75%, #aaa 75%);
-	background-color: #777;
+	background: linear-gradient(45deg, #888 25%, transparent 25%, transparent 75%, #888 75%),
+				linear-gradient(45deg, #888 25%, transparent 25%, transparent 75%, #888 75%);
+	background-color: #666;
 	background-size: 40px 40px;
 	background-position: 0 0, 20px 20px;
 	margin : 0px;
 }
 
-.txt-title {
+.prt-contents {
 	text-align: center;
+	min-width: 470px;
+}
+
+#prt-chapter-selet select {
+	font-size: 1rem;
+	margin-top: 1rem;
+}
+.txt-title {
 	color:#eee;
 	text-shadow: 2px 2px 2px #222;
 	margin-top: 1rem;
 }
 /*メインテキスト親*/
 .prt-main-txt {
-	text-align: center;
-	padding: 1.5rem 0 2rem;
+	padding: 2rem 0;
 }
 
 /*メインテキストボックス*/
@@ -34,13 +41,8 @@ body {
 	border-style: solid;
 	border-radius: 0.5rem;
 	background-color: #eee;
-	width:20rem; /*TODO 適当*/
+	width:16rem;
 	height: 1.5rem;
-}
-
-/*操作ボタン部分*/
-.prt-command {
-	text-align: center;
 }
 
 /*デフォルトのスタイルで上書きされるな...*/
@@ -69,8 +71,6 @@ body {
 }
 
 #txt-current-page {
-	position: absolute;
-	right: 1rem;
-	bottom :1rem;
+	margin-top: 0.5rem;
 	font-size: 0.8rem;
 }
