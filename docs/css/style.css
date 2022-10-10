@@ -1,0 +1,76 @@
+html {
+	font-size: 24px;
+}
+@media (min-width: 940px) {
+	html {
+		font-size: 32px;
+	}
+}
+
+body {
+	background: linear-gradient(45deg, #aaa 25%, transparent 25%, transparent 75%, #aaa 75%),
+				linear-gradient(45deg, #aaa 25%, transparent 25%, transparent 75%, #aaa 75%);
+	background-color: #777;
+	background-size: 40px 40px;
+	background-position: 0 0, 20px 20px;
+	margin : 0px;
+}
+
+.txt-title {
+	text-align: center;
+	color:#eee;
+	text-shadow: 2px 2px 2px #222;
+	margin-top: 1rem;
+}
+/*メインテキスト親*/
+.prt-main-txt {
+	text-align: center;
+	padding: 1.5rem 0 2rem;
+}
+
+/*メインテキストボックス*/
+.prt-txt-box {
+	margin: 0 auto;
+	border-style: solid;
+	border-radius: 0.5rem;
+	background-color: #eee;
+	width:20rem; /*TODO 適当*/
+	height: 1.5rem;
+}
+
+/*操作ボタン部分*/
+.prt-command {
+	text-align: center;
+}
+
+/*デフォルトのスタイルで上書きされるな...*/
+.prt-command .btn-step,
+.prt-command #btn-play,
+.prt-command #scenario-set,
+.prt-command #btn-jump {
+	font-size: 0.8rem;
+}
+
+#btn-play {
+	width: 2rem;
+	height: 1.6rem;
+}
+
+.prt-main-button,
+.prt-sub-button {
+	height: 2.2rem;
+}
+
+.speed-control {
+	display: inline-block;
+	background-color: #fefefe;
+	font-size: 0.8rem;
+	padding: 0.2rem;
+}
+
+#txt-current-page {
+	position: absolute;
+	right: 1rem;
+	bottom :1rem;
+	font-size: 0.8rem;
+}

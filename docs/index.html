@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<script type="text/javascript" src="./js/main.js"></script>
+		<title>テキストめっちゃ速く読むやつ</title>
+	</head>
+	<body>
+		<div class="txt-title">テキストめっちゃ速く読むやつ</div>
+		<div class="prt-main-txt">
+			<div class="prt-txt-box">
+				<div id="txt-box"></div>
+			</div>
+		</div>
+		<div class="prt-command">
+			<div class="prt-main-button">
+				<button class="btn-step" type="button" onclick="onScenarioAdd(-1)">1つ戻る</button>
+				<button id="btn-play" type="button" onclick="onPlayOrStop()">▶︎</button>
+				<button class="btn-step" type="button" onclick="onScenarioAdd(+1)">1つ進める</button>
+			</div>
+			<div class="prt-sub-button">
+				<input type="number" id="scenario-set" value="0" min="0">
+				<button id="btn-jump" type="button" onclick="onScenarioJump()">にする</button>
+			</div>
+			<div class="prt-speed-control">
+				<div class="speed-control">
+				再生速度
+				<input type="range" id="range-speed" min="0" max="100" value="50">
+				</div>
+			</div> 
+		</div>
+		<div id="txt-current-page">0</div>
+	</body>
+</html>
